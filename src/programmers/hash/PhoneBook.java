@@ -33,7 +33,7 @@ phone_book	return
 
 출처*/
 
-package programmers;
+package programmers.hash;
 
 //해쉬 문제이지만 무조건 해쉬로 풀어야 한다는 생각을 버리자!!
 

@@ -38,7 +38,7 @@ face에 해당하는 의상이 crowmask, bluesunglasses, smoky_makeup이므로 �
 2. blue_sunglasses
 3. smoky_makeup*/
 
-package programmers;
+package programmers.hash;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,10 +51,18 @@ public class Camo {
         Map<String, Integer> map = new HashMap<>();
 
         for (int i = 0; i < clothes.length; i++) {
-            map.put(clothes[i][1], i);
+            if(map.get(i) == null){
+                map.put(clothes[i][1], 1);
+            }else{
+                map.put(clothes[i][1], i);
+            }
+
         }
 
         System.out.println(map);
+        if(map.size() == clothes.length){
+            return clothes.length;
+        }
 
         //경우의 수 공식 : 합의 법칙 + 곱의 법칙 (n + r) + (n * r)
         //value 값까지 출력할게 아니라면 굳이 map.entrySet으로 전체 데이터를 가져올 필요는 없고,
@@ -70,6 +78,7 @@ public class Camo {
 
     public static void main(String[] args) {
         Camo c = new Camo();
+        //String [][]clothes = new String[][]{{"crow_mask", "face"}, {"blue_sunglasses", "face"}, {"smoky_makeup", "face"}};
         String [][]clothes = new String[][]{{"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"}, {"green_turban", "headgear"}};
         System.out.println(c.solution(clothes));
     }

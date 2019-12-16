@@ -45,6 +45,7 @@ public class BestPhotoBook {
         int[] answer = {};
         Map<String,Integer> topPlay = new HashMap<>();
         Map<String,Map<Integer,Integer>> firstSong = new HashMap<>();
+        Map<Integer,Integer> countList = null;
         //Map<Integer,Integer> countList = new HashMap<>();
 
         int genLength = genres.length;
@@ -58,31 +59,113 @@ public class BestPhotoBook {
             }
             //topPlay.put(genres[i], topPlay.containsKey(genres[i]) ? topPlay.get(genres[i])+plays[i] : plays[i]) ;
 
-            Map<Integer,Integer> countList = firstSong.containsKey(genres[i]) ? firstSong.get(genres[i]) : new HashMap<>();
+            if(firstSong.containsKey(genres[i])){
+                countList = firstSong.get(genres[i]);
+            }else{
+                countList = new HashMap<>();
+            }
+            //Map<Integer,Integer> countList = firstSong.containsKey(genres[i]) ? firstSong.get(genres[i]) : new HashMap<>();
+
             countList.put(i,plays[i]);
             firstSong.put(genres[i],countList);
         }
-        //HashMap을 TreeMap 생성자에 담으면 key 순서로 오름차순 정렬되어 Entry가 정렬된다.
-        TreeMap<String,Integer> sortTopPlay = new TreeMap<>(topPlay);
-        TreeMap<String,Map<Integer,Integer>> sortFinalMap = new TreeMap<>(firstSong);
 
-        String lastKey = sortTopPlay.firstKey();
-        String firstKey = sortTopPlay.lastKey();
+        System.out.println(topPlay);
 
-        List<Integer> firstPlayList = new ArrayList<>(sortFinalMap.get(firstKey).keySet());
-        List<Integer> lastPlayList = new ArrayList<>(sortFinalMap.get(lastKey).keySet());
+        //리스트에 map의 키 값 담기
+        List<String> topPlayKey = new ArrayList<>(topPlay.keySet());
 
-        answer = new int[]{firstPlayList.get(firstPlayList.size() - 1), firstPlayList.get(0), lastPlayList.get(lastPlayList.size() - 1), lastPlayList.get(0)};
+        Collections.sort(topPlayKey, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                //내림차순, value 값으로 정렬
+                return topPlay.get(o2).compareTo(topPlay.get(o1));
+                //오름차순
+                // return topPlay.get(o1).compareTo(topPlay.get(o2));
+            }
+        });
+
+        System.out.println("firstSong : " + firstSong);
+        //키값을 정렬했으니 키 값 순서대로 그 안의 map을 정렬하면된다.
+
+        for (String key : topPlayKey) {
+            System.out.println("key : " + key);
+            /*Map<Integer, Integer> tempMap   = new HashMap<>(firstSong.get(key));
+            System.out.println("firstSong.get(key) : " + firstSong.get(key));
+            System.out.println("firstSong.get(key) : " + firstSong.get(key).get(0));
+            list.add(tempMap);*/
+            List<Map.Entry<Integer, Integer>> list = new ArrayList<>(firstSong.get(key).entrySet());
+            //System.out.println("list : " + list);
+
+            Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
+                @Override
+                public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+                    if (o1.getValue() == o2.getValue()){
+                        return o1.getKey().compareTo(o2.getKey());
+                    }else{
+                        return o2.getValue().compareTo(o1.getValue());
+                    }
+                }
+            });
+            Map<Integer,Integer> map = new HashMap<>();
+            map.entrySet().toArray();
+            System.out.println("list : " + list);
+
+            /*Map<String, Object> map = new HashMap<String, Object>();
+String[] keys = new String[map.size()];
+Object[] values = new Object[map.size()];
+int index = 0;
+for (Map.Entry<String, Object> mapEntry : map.entrySet()) {
+    keys[index] = mapEntry.getKey();
+    values[index] = mapEntry.getValue();
+    index++;
+}*/
+            for (Map.Entry<Integer, Integer> entrys : list)
+            {
+                int index = 0;
+                if(index < 2){
+
+                }
+                index++;
+                //answer[i] entry,key()
+            }
+
+        }
 
         return answer;
     }
+
+    public int [] addAnswer(int [] an, int index)
+    {
+        int [] result = Arrays.copyOf(an, 1);
+        result[an.length] = index;
+        return result;
+    }
+
 
     public static void main(String[] args) {
         BestPhotoBook b = new BestPhotoBook();
         String[] genres = {"classic", "pop", "classic", "classic", "pop"};
         int[] plays = {500, 600, 150, 800, 2500};
         //classic : 1450 pop : 3100
-        System.out.println(b.solution(genres, plays));
-
+        System.out.println(Arrays.toString(b.solution(genres, plays)));
     }
 }
+
+
+
+/*TreeMap<String,Integer> sortTopPlay = new TreeMap<>(topPlay);
+        TreeMap<String,Map<Integer,Integer>> sortFinalMap = new TreeMap<>(firstSong);
+
+        System.out.println(sortTopPlay);
+                System.out.println(sortFinalMap);
+                //맨 마지막의 키가 가장 처음에 재생되어야 할 키 이므로
+                String lastKey = sortTopPlay.firstKey();
+                String firstKey = sortTopPlay.lastKey();
+
+                //키 값을 리스트에 저장
+                List<Integer> firstPlayList = new ArrayList<>(sortFinalMap.get(firstKey).keySet());
+        List<Integer> lastPlayList = new ArrayList<>(sortFinalMap.get(lastKey).keySet());
+
+        //저장된 리스트 출력력
+        answer = new int[]{firstPlayList.get(firstPlayList.size() - 1), firstPlayList.get(0), lastPlayList.get(lastPlayList.size() - 1), lastPlayList.get(0)};*/

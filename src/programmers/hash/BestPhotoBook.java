@@ -39,14 +39,13 @@ public class BestPhotoBook {
 
     // 요구사항 정리
     // 1. 가장 많이 재생된 장르를 찾는다
-    // 2. 같은 장르의 노래가 여러개 있으면 앞의 인덱스에 있는 노래가 먼저 재생된다.
-    // 3. 먼저 선택된 장르의 인덱스, 그 인덱스에 해당하는 재생 횟수의 인덱스를 반환해야한다.
+    // 2. 같은 장르의 노래중 재생 횟수가 높은 노래가 먼저 재생된다.
+    // 3. 재생횟수가 같은 경우에는 인덱스가 낮은 노래가 먼저 재생된다.
     public int[] solution(String[] genres, int[] plays) {
         int[] answer = {};
         Map<String,Integer> topPlay = new HashMap<>();
         Map<String,Map<Integer,Integer>> firstSong = new HashMap<>();
         Map<Integer,Integer> countList = null;
-        //Map<Integer,Integer> countList = new HashMap<>();
 
         int genLength = genres.length;
 
@@ -57,6 +56,7 @@ public class BestPhotoBook {
             }else{
                 topPlay.put(genres[i], topPlay.get(genres[i])+plays[i]);
             }
+            //3항 연산자로 나타낸다면
             //topPlay.put(genres[i], topPlay.containsKey(genres[i]) ? topPlay.get(genres[i])+plays[i] : plays[i]) ;
 
             if(firstSong.containsKey(genres[i])){
@@ -64,13 +64,14 @@ public class BestPhotoBook {
             }else{
                 countList = new HashMap<>();
             }
+
+            //3항 연산자로 나타낸다.
             //Map<Integer,Integer> countList = firstSong.containsKey(genres[i]) ? firstSong.get(genres[i]) : new HashMap<>();
 
             countList.put(i,plays[i]);
             firstSong.put(genres[i],countList);
         }
 
-        //System.out.println(topPlay);
 
         //리스트에 map의 키 값 담기
         List<String> topPlayKey = new ArrayList<>(topPlay.keySet());
@@ -89,13 +90,7 @@ public class BestPhotoBook {
         //키값을 정렬했으니 키 값 순서대로 그 안의 map을 정렬하면된다.
         List<Integer> temp = new ArrayList<>();
         for (String key : topPlayKey) {
-            //System.out.println("key : " + key);
-            /*Map<Integer, Integer> tempMap   = new HashMap<>(firstSong.get(key));
-            System.out.println("firstSong.get(key) : " + firstSong.get(key));
-            System.out.println("firstSong.get(key) : " + firstSong.get(key).get(0));
-            list.add(tempMap);*/
             List<Map.Entry<Integer, Integer>> list = new ArrayList<>(firstSong.get(key).entrySet());
-            //System.out.println("list : " + list);
 
             Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
                 @Override
@@ -107,25 +102,21 @@ public class BestPhotoBook {
                     }
                 }
             });
+
             Map<Integer,Integer> map = new HashMap<>();
             map.entrySet().toArray();
-            //System.out.println("list : " + list);
-
 
             int index = 0;
             for (Map.Entry<Integer, Integer> entrys : list)
             {
-
                 if(index < 2){
-                    int ekey = entrys.getKey();
-
-                    temp.add(ekey);
+                    int entrysKey = entrys.getKey();
+                    temp.add(entrysKey);
                     index++;
                 }
             }
-            //System.out.println("temp : " + temp);
         }
-        //System.out.println(temp.size());
+
         answer = new int[temp.size()];
         for(int i=0; i<temp.size(); i++){
             answer[i] = temp.get(i);
@@ -133,14 +124,6 @@ public class BestPhotoBook {
 
         return answer;
     }
-
-    public int [] addAnswer(int [] an, int index)
-    {
-        int [] result = Arrays.copyOf(an, 1);
-        result[an.length] = index;
-        return result;
-    }
-
 
     public static void main(String[] args) {
         BestPhotoBook b = new BestPhotoBook();
@@ -153,7 +136,7 @@ public class BestPhotoBook {
 
 
 
-/*TreeMap<String,Integer> sortTopPlay = new TreeMap<>(topPlay);
+/*      TreeMap<String,Integer> sortTopPlay = new TreeMap<>(topPlay);
         TreeMap<String,Map<Integer,Integer>> sortFinalMap = new TreeMap<>(firstSong);
 
         System.out.println(sortTopPlay);

@@ -70,7 +70,7 @@ public class BestPhotoBook {
             firstSong.put(genres[i],countList);
         }
 
-        System.out.println(topPlay);
+        //System.out.println(topPlay);
 
         //리스트에 map의 키 값 담기
         List<String> topPlayKey = new ArrayList<>(topPlay.keySet());
@@ -85,11 +85,11 @@ public class BestPhotoBook {
             }
         });
 
-        System.out.println("firstSong : " + firstSong);
+        //System.out.println("firstSong : " + firstSong);
         //키값을 정렬했으니 키 값 순서대로 그 안의 map을 정렬하면된다.
-
+        List<Integer> temp = new ArrayList<>();
         for (String key : topPlayKey) {
-            System.out.println("key : " + key);
+            //System.out.println("key : " + key);
             /*Map<Integer, Integer> tempMap   = new HashMap<>(firstSong.get(key));
             System.out.println("firstSong.get(key) : " + firstSong.get(key));
             System.out.println("firstSong.get(key) : " + firstSong.get(key).get(0));
@@ -109,27 +109,26 @@ public class BestPhotoBook {
             });
             Map<Integer,Integer> map = new HashMap<>();
             map.entrySet().toArray();
-            System.out.println("list : " + list);
+            //System.out.println("list : " + list);
 
-            /*Map<String, Object> map = new HashMap<String, Object>();
-String[] keys = new String[map.size()];
-Object[] values = new Object[map.size()];
-int index = 0;
-for (Map.Entry<String, Object> mapEntry : map.entrySet()) {
-    keys[index] = mapEntry.getKey();
-    values[index] = mapEntry.getValue();
-    index++;
-}*/
+
+            int index = 0;
             for (Map.Entry<Integer, Integer> entrys : list)
             {
-                int index = 0;
+
                 if(index < 2){
+                    int ekey = entrys.getKey();
 
+                    temp.add(ekey);
+                    index++;
                 }
-                index++;
-                //answer[i] entry,key()
             }
-
+            //System.out.println("temp : " + temp);
+        }
+        //System.out.println(temp.size());
+        answer = new int[temp.size()];
+        for(int i=0; i<temp.size(); i++){
+            answer[i] = temp.get(i);
         }
 
         return answer;

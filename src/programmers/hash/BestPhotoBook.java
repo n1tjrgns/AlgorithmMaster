@@ -105,10 +105,7 @@ public class BestPhotoBook {
                     }
                 }
             });
-
-            Map<Integer,Integer> map = new HashMap<>();
-            map.entrySet().toArray();
-
+            
             int index = 0;
             for (Map.Entry<Integer, Integer> entrys : list)
             {

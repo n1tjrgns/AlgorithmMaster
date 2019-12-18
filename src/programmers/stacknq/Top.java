@@ -41,7 +41,7 @@ heights	return
 [6] 번째 탑이 쏜 신호는 5번째 탑이 수신합니다.
 [7] 번째 탑이 쏜 신호는 6번째 탑이 수신합니다.
 */
-package programmers.hash.stacknq;
+package programmers.stacknq;
 
 import java.util.Arrays;
 

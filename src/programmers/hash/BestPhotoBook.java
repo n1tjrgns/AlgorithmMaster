@@ -56,9 +56,11 @@ public class BestPhotoBook {
             }else{
                 topPlay.put(genres[i], topPlay.get(genres[i])+plays[i]);
             }
+
+            System.out.println(firstSong);
             //3항 연산자로 나타낸다면
             //topPlay.put(genres[i], topPlay.containsKey(genres[i]) ? topPlay.get(genres[i])+plays[i] : plays[i]) ;
-
+            System.out.println("i : " + i);
             if(firstSong.containsKey(genres[i])){
                 countList = firstSong.get(genres[i]);
             }else{
@@ -71,7 +73,8 @@ public class BestPhotoBook {
             countList.put(i,plays[i]);
             firstSong.put(genres[i],countList);
         }
-
+        System.out.println("topPlay : " + topPlay);
+        System.out.println("firstSongfirstSong : "+ firstSong);
 
         //리스트에 map의 키 값 담기
         List<String> topPlayKey = new ArrayList<>(topPlay.keySet());

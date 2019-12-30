@@ -58,14 +58,10 @@ public class Truck {
 
                 //무게 계산을 이미 하고 들어오기 때문에 시간을 계산하기 위한 로직을 별개로 수행 가능
                 truck_time.add(0);
-                System.out.println("idx : "+ idx);
-                System.out.println("bridge_weight : "+ bridge_weight);
-                System.out.println("truck_time : "+ truck_time);
             }
 
             //시간계산
             int queueSize = truck_time.size();
-            System.out.println("queueSize : "+ queueSize);
 
             //큐에 0을 넣어주고 큐에 들어온 크기 만큼 반복, 절대 다리 길이보다 커질 수는 없음
             for(int i = 0; i < queueSize; i++) {

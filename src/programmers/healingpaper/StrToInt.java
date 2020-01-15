@@ -1,4 +1,4 @@
-package programmers.string;
+package programmers.healingpaper;
 
 public class StrToInt {
     public Object getStrToInt(String str) {

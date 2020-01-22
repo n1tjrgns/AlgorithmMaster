@@ -26,10 +26,11 @@ public class Dfs {
         }
         dfs(v);
     }
+
     private static void dfs(int v) {
         visited[v] = true; //방문했으니 true
         System.out.print(v+" ");
-        for(int i=0; i<n+1; i++){
+        for(int i=1; i<=n; i++){
             if(graph[v][i] == 1 && visited[i] == false){
                 dfs(i);
             }

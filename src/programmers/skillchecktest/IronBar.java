@@ -13,9 +13,8 @@ public class IronBar {
             if(arrangement.charAt(i) == '('){
                 stack.add(arrangement.charAt(i));
             }else{
-
+                stack.pop();
                 if(arrangement.charAt(i-1) == '('){
-                    stack.pop();
                     answer = answer + stack.size();
                 }else{
                     answer = answer + 1;

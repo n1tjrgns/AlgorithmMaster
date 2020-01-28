@@ -34,8 +34,34 @@ public class FindPrimeNum {
         permutation("", numbers, set);
 
         int answer = 0;
+        while(set.iterator().hasNext()){
+            int next = set.iterator().next();
+            set.remove(next);
+            System.out.println("next : " + next);
+            if(next == 2){
+                // 2는 따로 카운트
+                answer++;
+            }
+            if(next % 2 !=0 && isPrime(next)){
+                answer++;
+            }
+        }
 
         return answer;
+    }
+
+    private boolean isPrime(int next) {
+        if(next == 0 || next == 1){
+            return false;
+        }
+        //에라토스테네스의 체
+        //
+        for(int i=3; i<=Math.sqrt(next); i=i+2){
+            if(next%i == 0){
+               return false;
+            }
+        }
+        return true;
     }
 
     private void permutation(String prefix, String numbers, HashSet<Integer> set) {

@@ -10,6 +10,8 @@ Example 2:
 Input: 1->1->2->3->3
 Output: 1->2->3*/
 public class RemoveDuplicatesFromSortedList {
+    // # Refs 코딩인터뷰 완전분석 P 139
+    // 단방향 연결리스트
     // # Refs leetcode MergeTowSortedLists 문제와 비슷
      public class ListNode {
         int val;
@@ -20,7 +22,7 @@ public class RemoveDuplicatesFromSortedList {
         public ListNode deleteDuplicates(ListNode head) {
             ListNode current = head;
 
-            //현재 head가 null이 아닐동안
+            //현재 head가 null이 아닐동안 -> 마지막 값을 찾는다.
             while(current != null && current.next != null){
                 //현재값과 다음 값이 같으면 ex) 1->1
                 if(current.val == current.next.val){

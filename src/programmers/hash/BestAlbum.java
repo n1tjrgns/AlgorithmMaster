@@ -27,6 +27,7 @@ public class BestAlbum {
                 sumPlays.put(genres[i], value);
             }
 
+            //키에 따른 인덱스별 재생횟수 저장
             if(album.containsKey(genres[i])){
                 indexPlay = album.get(genres[i]);
             }else{
@@ -40,6 +41,7 @@ public class BestAlbum {
         System.out.println(sumPlays);
         System.out.println(indexPlay);
 
+        //최대 재생횟수 장르로 정렬
         List<String> sortGenre = new ArrayList<>(sumPlays.keySet());
         System.out.println("정렬 전 장르 : " + sortGenre);
 
@@ -57,6 +59,7 @@ public class BestAlbum {
         //같은 장르 내에서 재생횟수가 같은 노래는 인덱스가 낮은 노래부터 나오도록 정렬
         List<Integer> temp = new ArrayList<>();
 
+        //최대 재생횟수인 장르별 인덱스 정렬
         for(String key : sortGenre){
             List<Map.Entry<Integer,Integer>> list = new ArrayList<>(album.get(key).entrySet());
             System.out.println("정렬 전 list : " + list);
@@ -64,9 +67,11 @@ public class BestAlbum {
                 @Override
                 public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
                     System.out.println("index o1 : "+o1 + "  o2 : "+ o2);
+                    //인덱스 내의 재생횟수가 같은 경우에는 index가 작도록
                     if(o1.getValue() == o2.getValue()){
                         return o1.getKey().compareTo(o2.getKey());
                     }else{
+                        //그렇지 않은 경우에는 value값이 큰 경우가 앞으로
                         return o2.getValue().compareTo(o1.getValue());
                     }
                 }
@@ -90,6 +95,7 @@ public class BestAlbum {
 
         }
 
+        //배열로 변환
         answer = new int[temp.size()];
         for(int i=0; i<temp.size(); i++){
             answer[i] = temp.get(i);

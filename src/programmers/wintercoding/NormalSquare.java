@@ -20,9 +20,9 @@ public class NormalSquare {
             return gcd(h, w%h);
         }
     }
+        public static void main(String[] args) {
+            NormalSquare n = new NormalSquare();
 
-    public static void main(String[] args) {
-        NormalSquare n = new NormalSquare();
         System.out.println(n.solution(8, 12));
     }
 }

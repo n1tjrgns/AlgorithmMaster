@@ -1,7 +1,7 @@
 package programmers.kakaointernship;
 
 import java.util.*;
-
+//https://programmers.co.kr/learn/courses/30/lessons/42888
 public class OpenTalk {
     /* 닉네임 변경 방법
      1. 채팅방을 나간 후 새로운 닉네임으로 들어간다
@@ -33,9 +33,9 @@ public class OpenTalk {
         for(String r : record){
             String temp[] = r.split(" ");
             if(temp[0].equals("Enter")){
-                list.add(map.get(temp[1])+"님이 들어왔습니다");
+                list.add(map.get(temp[1])+"님이 들어왔습니다.");
             }else if(temp[0].equals("Leave")){
-                list.add(map.get(temp[1])+"님이 나갔습니다");
+                list.add(map.get(temp[1])+"님이 나갔습니다.");
             }
         }
 

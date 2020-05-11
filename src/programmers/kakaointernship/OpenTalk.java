@@ -10,7 +10,6 @@ public class OpenTalk {
         - 결과값은 최종 결과를 출력한다.
     * */
     public String[] solution(String[] record) {
-        String[] answer = {};
 
         // enter, leave, change 입장 상태값
         // uid : 아이디 고유값
@@ -39,6 +38,7 @@ public class OpenTalk {
             }
         }
 
+        String[] answer = new String[list.size()];
         for(int i=0; i<list.size(); i++){
             answer[i] = list.get(i);
         }

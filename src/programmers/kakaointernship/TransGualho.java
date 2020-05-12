@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 //https://programmers.co.kr/learn/courses/30/lessons/60058
-//https://keepgoing0328.tistory.com/entry/2020%EC%B9%B4%EC%B9%B4%EC%98%A4-%EA%B3%B5%EC%B1%84-%EA%B4%84%ED%98%B8-%EB%B3%80%ED%99%98-%EC%9E%90%EB%B0%94
 public class TransGualho {
     /*
     (와 )의 개수가 같으면 균형잡힌 괄호
@@ -33,12 +32,13 @@ public class TransGualho {
         if(rightCheck(paramList)){ //변환할게 없으면
             return p; //바로 리턴
         }else{
-            divideUV(p);
+            answer = divideUV(p,"");
         }
         return answer;
     }
     // 문자가 들어오면 u, v 2개로 나누는 메소드
-    private void divideUV(String p){
+    private String divideUV(String p, String uStr){
+        String divideStr = "";
         String[] splitP = p.split("");
         List<String> u = new ArrayList<>();
         List<String> v = new ArrayList<>();
@@ -56,23 +56,25 @@ public class TransGualho {
             if (left == right) {
                 //그만 둔 시점의 인덱스 기억
                 index = left + right;
-                System.out.println("index : " + index);
                 break;
             }
         }
         for (int i = index; i < splitP.length; i++) {
             v.add(splitP[i]);
         }
-        System.out.println("diviedU : "+ u);
-        System.out.println("diviedv : "+ v);
+
         if(rightCheck(u) && !rightCheck(v)){
-            System.out.println("이게타나");
+            StringBuilder sbUCheck = listToString(u);
+            System.out.println(sbUCheck.toString());
             StringBuilder sb = listToString(v);
-            divideUV(sb.toString());
+            //divideStr = divideUV(sbU.toString() + sb.toString());
+            divideStr = divideUV(sb.toString(), sbUCheck.toString());
         }else if(!rightCheck(u) && rightCheck(v)){
-            System.out.println("이게타나2");
-            addGualho(u,v);
+            //StringBuilder sbU = listToString(u);
+            divideStr = uStr + addGualho(u,v);
         }
+
+        return divideStr;
     }
     private StringBuilder listToString(List<String> v) {
         StringBuilder sb = new StringBuilder();
@@ -84,46 +86,29 @@ public class TransGualho {
     }
     private String addGualho(List<String> u, List<String> v) {
         String addStr = "";
+        StringBuilder sbCheck = listToString(u);
         StringBuilder sbV = listToString(v);
         StringBuilder sbRemove = new StringBuilder();
-        u.add(0, "(");
+        //빈 문자열에 붙인다는게 그냥 아예 별개의 문자인가?
+        String newStr = "("+sbV.toString()+")";
+        /*u.add(0, "(");
         u.add(u.size(), ")");
-        u.add(u.size()/2, sbV.toString());
-        System.out.println("u : "+u);
+        u.add(u.size()/2, sbV.toString());*/
         StringBuilder sbU = listToString(u);
         // ())()(() -> ()()()
         // (()()) -> ()(())()
-        for(int j=1; j<sbU.toString().length()-1; j++){
-            System.out.println(sbU.charAt(j));
-        }
+
         for(int i=1; i<sbU.toString().length()-1; i++){
             if(sbU.charAt(i)=='('){
                 sbRemove.append(")");
             }else if(sbU.charAt(i)==')'){
                 sbRemove.append("(");
             }
-            /*if(u.get(i).equals("(")){
-                sbRemove.append(")");
-            }else if (u.get(i).equals(")")){
-                sbRemove.append("(");
-            }*/
+
         }
-        //System.out.println("sbRemove : " + sbRemove);
-        addStr = sbRemove.toString();
-        System.out.println("addstr : " + addStr);
+        addStr = newStr + sbRemove.toString();
         return addStr;
-        /*int vIndex = u.size()/2;
-        System.out.println(u);
-        System.out.println(sb.toString());
-        u.add(0, "(");
-        u.add(vIndex, sb.toString());
-        u.add(u.size()-1, ")");
-        System.out.println("중간과정 : " + u);
-        u.remove(0);
-        System.out.println("중간과정1 : " + u);
-        u.remove(u.size()-1);
-        System.out.println("중간과정2 : " + u);
-        System.out.println(u);*/
+
     }
     // 올바른지 괄호인지 판단하는 메소드
     private boolean rightCheck(List<String> p) {

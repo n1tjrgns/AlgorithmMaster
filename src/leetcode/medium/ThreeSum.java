@@ -16,8 +16,8 @@ public class ThreeSum {
 
         //합이 0을 만족하는 3개의 숫자를 구해야 하므로, 3개의 임의의 포인터를 잡는다.
         //여기서는 i와 i+1, 제일 끝점 length -1 로 잡았다.
-        for(int i=0; i<nums.length-2; i++) {
-
+        for(int i=0; i<nums.length; i++) {
+            if(i-1 >=0 && nums[i] == nums[i-1]) continue; //이전 코드도 같으면 안됨
             int left = i + 1;
             int right = nums.length - 1;
             while (left < right) {

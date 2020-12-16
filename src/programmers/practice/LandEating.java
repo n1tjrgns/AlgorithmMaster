@@ -64,9 +64,7 @@ public class LandEating {
         for(int i=1; i<land.length; i++){
             for(int j=0; j<4; j++){
                 int temp = land[i][j];
-
                 for(int k=0; k<4; k++){
-
                     if (j==k) continue;
                     else land[i][j] = Math.max(land[i][j], temp + land[i-1][k]);
                     System.out.println("i : "+i+" j :"+j+" k : "+k);

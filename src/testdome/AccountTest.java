@@ -1,7 +1,9 @@
+/*
 package testdome;
 
 import org.junit.Assert;
 import org.junit.Test;
+*/
 /*Using JUnit 4's Assert class, write tests for the Account class that cover the following cases:
 
 The deposit and withdraw methods will not accept negative numbers.
@@ -13,7 +15,8 @@ The withdraw and deposit methods return the correct results.
 예금과 인출 방법은 각각 정확한 금액을 입금하거나 인출한다.
 인출 및 입금 방법은 정확한 결과를 반환한다.
 
-*/
+*//*
+
 public class AccountTest {
 
     //- assertEquals([message,] double expected, double actual, double delta) :
@@ -71,4 +74,4 @@ public class AccountTest {
             Assert.assertFalse(result);
             Assert.assertEquals(0, account.getBalance(), epsilon);
         }
-    }
+    }*/

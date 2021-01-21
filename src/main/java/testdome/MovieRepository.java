@@ -1,3 +1,4 @@
+/*
 package testdome;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,4 +110,4 @@ public class MovieRepository {
             System.out.println(movie.name + " - " + movie.year + " - " + movie.rating);
         }
     }
-}
+}*/

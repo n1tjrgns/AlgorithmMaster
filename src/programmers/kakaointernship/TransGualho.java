@@ -1,3 +1,4 @@
+/*
 package programmers.kakaointernship;
 
 import org.junit.Assert;
@@ -6,9 +7,11 @@ import org.junit.Test;
 import java.util.Stack;
 //https://programmers.co.kr/learn/courses/30/lessons/60058
 public class TransGualho {
-    /*
+    */
+/*
     (와 )의 개수가 같으면 균형잡힌 괄호
-    개수가 같으면서 짝도 맞는경우 올바른 괄호 문자열열    * */
+    개수가 같으면서 짝도 맞는경우 올바른 괄호 문자열열    * *//*
+
     public String solution(String p) {
         //빈 문자열 -> 빈 문자열 반환
         // 문자열 p를 최초의 균형잡힌 문자열과(u) 나머지 균형잡힌 문자열로 분리(v)
@@ -142,4 +145,4 @@ public class TransGualho {
         //then
         Assert.assertEquals(t.solution(p), result);
     }
-}
+}*/

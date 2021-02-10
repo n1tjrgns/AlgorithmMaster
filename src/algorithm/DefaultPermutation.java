@@ -1,34 +1,33 @@
 package algorithm;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
+//주어진 배열로 만들 수 있는 모든 순열, 같은 길이만 해당함
+//중복되지 않은 숫자를 가지고 있을 때 모든 순열 구하기
 public class DefaultPermutation {
-    //순서 없이 arr.length개 중에서 n개를 뽑는 경우
-    //permutation(arr, 0, n)
     public static void main(String[] args) {
-        DefaultPermutation p = new DefaultPermutation();
-        System.out.println(Arrays.toString(p.solution(new int[]{1, 2, 3}, 0, 3)));
+        DefaultPermutation d = new DefaultPermutation();
+        System.out.println(d.permute(new int[]{1,2,3}));
     }
 
-    public int[] solution(int[] arr, int depth, int n){
-        permutation(arr,0,n);
-
-        return arr;
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> list = new ArrayList<>();
+        // Arrays.sort(nums); // not necessary
+        backtrack(list, new ArrayList<>(), nums);
+        return list;
     }
-     void permutation(int[] arr, int depth, int n){
-        if(depth == n){
-            System.out.println(Arrays.toString(arr));
+
+    private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] nums){
+        if(tempList.size() == nums.length){
+            list.add(new ArrayList<>(tempList));
+        } else{
+            for(int i = 0; i < nums.length; i++){
+                if(tempList.contains(nums[i])) continue; // element already exists, skip
+                tempList.add(nums[i]);
+                backtrack(list, tempList, nums);
+                tempList.remove(tempList.size() - 1);
+            }
         }
-        for(int i=depth; i<arr.length; i++){
-            swap(arr, i, depth);
-            permutation(arr, depth + 1, n);
-            swap(arr, i, depth);
-        }
-    }
-
-    void swap(int[] arr, int depth, int i) {
-        int temp = arr[depth];
-        arr[depth] = arr[i];
-        arr[i] = temp;
     }
 }

@@ -23,7 +23,7 @@ public class DefaultSubsets {
         list.add(new ArrayList<>(tempList)); //맨 앞에 공백[] 값 넣기
         for (int i=depth; i<nums.length; i++){
             tempList.add(nums[i]);
-            backtrack(nums, list, tempList, depth+1);
+            backtrack(nums, list, tempList, i+1);
             tempList.remove(tempList.size()-1);
         }
     }

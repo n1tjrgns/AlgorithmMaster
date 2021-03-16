@@ -15,6 +15,12 @@ class TreeNode {
           this.right = right;
       }
 }
+
+/**
+ *  preorder : 전위 순회 (루트 -> 왼쪽 -> 오른쪽)
+ *  inorder : 중위 순회 (왼쪽 -> 루트 -> 오른쪽)
+ *  postorder : 후위 순회 (왼쪽 -> 오른쪽 -> 루트)
+ */
 public class InorderPreorder {
         int preorderIndex;
         Map<Integer, Integer> inorderIndexMap;
@@ -51,6 +57,6 @@ public class InorderPreorder {
 
     public static void main(String[] args) {
         InorderPreorder inorderPreorder = new InorderPreorder();
-        inorderPreorder.buildTree(new int[]{3,9,20,15,7}, new int[]{9,3,15,20,7});
+        System.out.println(inorderPreorder.buildTree(new int[]{3,9,20,15,7}, new int[]{9,3,15,20,7}));
     }
 }

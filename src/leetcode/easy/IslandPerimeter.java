@@ -31,8 +31,6 @@ public class IslandPerimeter {
                 if(grid[i][j]==1 && !visited[i][j]){
                     return dfs(i,j,visited,grid,grid.length,grid[0].length);
                 }
-
-
             }
         }
 
@@ -40,19 +38,25 @@ public class IslandPerimeter {
     }
 
     private int dfs(int x, int y, boolean[][] visited, int[][] grid, int m, int n) {
+        System.out.println("dfs start");
         visited[x][y] = true;
+        System.out.println("visited[" +x+"]["+y+"] = " + visited[x][y]);
         int count=0;
+        System.out.println("x = " + x + " ::: y = " + y);
         for(int i=0; i<4; i++){
             int nx = x + dx[i];
             int ny = y + dy[i];
 
-            if ( x < 0 || ny < 0 || nx>=m || ny>=n || grid[nx][ny] == 0){
+            System.out.println("i = " + i + " ::: nx = " + nx + " ::: ny = " + ny);
+
+            if (nx < 0 || ny < 0 || nx>=m || ny>=n || grid[nx][ny] == 0){
                 count++;
             }else {
                 if (grid[nx][ny] == 1 && !visited[nx][ny]){
                     count = count + dfs(nx,ny,visited,grid,m,n);
                 }
             }
+            System.out.println("count = " + count);
         }
         return count;
     }

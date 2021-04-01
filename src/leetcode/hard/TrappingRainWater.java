@@ -2,6 +2,7 @@ package leetcode.hard;
 
 import java.util.Arrays;
 
+//https://leetcode.com/problems/trapping-rain-water/
 //막대기 사이에 공간이 없고 오직 막대기로만 쌓았을때 이루어진 물의 넓이 구하
 public class TrappingRainWater {
     //빗물채우기 문제

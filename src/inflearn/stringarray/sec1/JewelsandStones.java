@@ -1,4 +1,4 @@
-package inflearn.stringarray;
+package inflearn.stringarray.sec1;
 
 //https://leetcode.com/problems/jewels-and-stones/
 public class JewelsandStones {

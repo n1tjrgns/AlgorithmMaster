@@ -1,4 +1,4 @@
-package inflearn.stringarray;
+package inflearn.stringarray.sec1;
 
 
 

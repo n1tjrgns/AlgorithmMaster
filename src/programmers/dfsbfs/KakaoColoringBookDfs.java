@@ -45,7 +45,7 @@ public class KakaoColoringBookDfs {
             int nx = x + dx[i];
             int ny = y + dy[i];
 
-            if(nx >=0 && ny >= 0 && nx < m && ny <n){
+            if(m >0 && n > 0 && nx <= m && ny <= n){
                 if(picture[nx][ny] == current && !visited[nx][ny]){
                     dfs(nx,ny, picture, visited, m, n);
                 }

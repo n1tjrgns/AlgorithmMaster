@@ -125,9 +125,9 @@ dp[4] = Math.min(dp[4], dp[4 - coins[j]] + 1);
     int min = Integer.MAX_VALUE;
     public int coinChange(int[] coins, int amount) {
 
-        if (amount < 1) return 0;
+        int max = amount + 1;
         int[] dp = new int[amount + 1];
-        Arrays.fill(dp, min); //max 값으로 초기화 시켜
+        Arrays.fill(dp, max); //max 값으로 초기화 시켜
         dp[0] = 0; //0원을 만들 수 있는 경우는 0개 이므로
 
         for (int i = 1; i <= amount; i++) {
@@ -139,12 +139,12 @@ dp[4] = Math.min(dp[4], dp[4 - coins[j]] + 1);
         }
         System.out.println("dp = " + Arrays.toString(dp));
         //각 dp의 인덱스가 의미하는 것은 인덱스 자리별 최소로 만들 수 있는 조합의 개수를 의미함.
-        if (dp[amount] > amount) return -1; //만약에 코인으로 조합을 하지 못한다면, maxValue가 남아있으테니 if문이 이렇게 됨.
-        else return dp[amount];
+        return dp[amount] > amount ? -1 : dp[amount]; //만약에 코인으로 조합을 하지 못한다면, maxValue가 남아있으테니 if문이 이렇게 됨.
     }
     public static void main(String[] args) {
         CoinChange c = new CoinChange();
         System.out.println(c.coinChange(new int[]{1,2,5},11));
+        System.out.println(c.coinChange(new int[]{2},3));
         //System.out.println(c.coinChange(new int[]{2},3));
     }
 }
